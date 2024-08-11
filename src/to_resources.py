@@ -39,4 +39,4 @@ class ToResources:
         self.path_backgroud : str | tuple = self.get_data_env(label="BACKGROUND_SCREEN", default=(0,0,255))
         self.colors : list = [(0,0,0),(255,255,255)]
 
-        self.game_map = GameMap(self.path_backgroud,self.path_pipe,self.path_floor, self.path_floor_two)
+        self.game_map = GameMap(self.path_backgroud,self.path_pipe,self.path_floor, self.path_floor_two,5)
