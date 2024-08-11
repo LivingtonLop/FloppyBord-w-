@@ -13,6 +13,8 @@ class Game (ToResources):
         self.to_clock = pygame.time.Clock()
         self.fps : float = 60.0
         self.score : int = 0
+        self.all_sprites = pygame.sprite.Group()
+        self.all_sprites.add(self.brid)
 
     def run(self):
         while self.to_execute:
@@ -28,9 +30,12 @@ class Game (ToResources):
                 self.to_execute = False
 
     def update(self):
-        pass
+        self.all_sprites.update()
 
     def render(self):
         self.display.fill((self.colors[1]))
+        
         self.game_map.render(self.display)
+        self.all_sprites.draw(self.display)
+
         pygame.display.update()

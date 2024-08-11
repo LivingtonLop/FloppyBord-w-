@@ -2,6 +2,8 @@ import os
 from typing import Union
 from dotenv import load_dotenv
 from game_map import GameMap
+from player import Player
+
 
 load_dotenv()
 
@@ -40,3 +42,5 @@ class ToResources:
         self.colors : list = [(0,0,0),(255,255,255)]
 
         self.game_map = GameMap(self.path_backgroud,self.path_pipe,self.path_floor, self.path_floor_two,5)
+        
+        self.brid = Player([self.path_brid,self.path_brid_two],self.display_width//2-100,self.display_height//2-100,(100,100))
