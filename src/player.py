@@ -11,9 +11,11 @@ class Player(pygame.sprite.Sprite):
         self.rect.topleft = (x, y)
         self.speed : int = speed
 
-    def update(self):
-            
-        pass
-    
-    def collision(self ):
+    def update(self, pos_y):
+
+        new = self.rect.move(0,pos_y)
+
+        self.rect = new
+
+    def collision(self):
         pass    

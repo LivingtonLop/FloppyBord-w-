@@ -3,7 +3,7 @@ from typing import Union
 from dotenv import load_dotenv
 from game_map import GameMap
 from player import Player
-
+from pipe import Pipe
 
 load_dotenv()
 
@@ -26,7 +26,7 @@ class ToResources:
             return int(data)
         
         return data 
-
+    
     def to_reset(self):
         self.display_width :int = self.get_data_env(label="SIZE_WIDTH_SCREEN")
         self.display_height :int = self.get_data_env(label="SIZE_HEIGHT_SCREEN")
@@ -41,6 +41,14 @@ class ToResources:
         self.path_backgroud : str | tuple = self.get_data_env(label="BACKGROUND_SCREEN", default=(0,0,255))
         self.colors : list = [(0,0,0),(255,255,255)]
 
-        self.game_map = GameMap(self.path_backgroud,self.path_pipe,self.path_floor, self.path_floor_two,5)
+        self.game_map = GameMap(self.path_backgroud,self.path_floor, self.path_floor_two,5)
         
-        self.brid = Player([self.path_brid,self.path_brid_two],self.display_width//2-100,self.display_height//2-100,(100,100))
+        self.brid = Player([self.path_brid,self.path_brid_two],self.display_width//2-50,self.display_height//2-100,(80,80),3)
+
+        self.new_pipes()
+
+        self.to_go = False
+
+    def new_pipes(self):
+        self.pipe_bottom = Pipe(self.path_pipe)
+        self.pipe_top = Pipe(self.path_pipe,self.pipe_bottom.list_coor,True)
