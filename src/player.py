@@ -10,6 +10,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
         self.speed : int = speed
+        self.angule : float = speed
 
     def update(self, pos_y):
 
@@ -17,5 +18,4 @@ class Player(pygame.sprite.Sprite):
 
         self.rect = new
 
-    def collision(self):
-        pass    
+        

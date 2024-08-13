@@ -50,34 +50,32 @@ class Game (ToResources):
     def update(self):
         if self.to_go:
             self.brid.update(self.brid.speed)
-
+            
             for pipe in self.all_pipes:
                 pipe.rect.x -= pipe.speed
                 if pipe.rect.right < 0:
                     pipe.kill()
                 
-                if pipe.rect.x == self.brid.rect.x:
-                    self.new_pipes()
-                    self.add_new_pipes()
-
-
+            if pipe.rect.x == self.brid.rect.x:    
+                self.new_pipes()
+                self.add_new_pipes()
+            
+                    
+            
         if self.game_map.confirm_collision(self.brid,self.all_pipes, self.display.get_height()):
-            print("Game Over")
-            print("Show Retry or UI")
-
-        self.score+=1
-
+            pass
 
 
     def render(self):
         self.display.fill((self.colors[1]))
+        
+        # self.show_hit_box(self.display,self.brid.rect,(0,255,0))
+        # self.show_hit_box(self.display,self.pipe_bottom.rect)
+        # self.show_hit_box(self.display,self.pipe_top.rect)
+
         self.game_map.render(self.display)
         self.all_pipes.draw(self.display)
-        self.all_sprites.draw(self.display)
-
-        self.show_hit_box(self.display,self.brid.rect,(0,255,0))
-        self.show_hit_box(self.display,self.pipe_bottom.rect)
-        self.show_hit_box(self.display,self.pipe_top.rect)
+        self.all_sprites.draw(self.display)        
 
         pygame.display.update()
     
@@ -88,3 +86,4 @@ class Game (ToResources):
     def add_new_pipes(self):
         self.all_pipes.add(self.pipe_bottom)
         self.all_pipes.add(self.pipe_top)
+        print(self.all_pipes)
