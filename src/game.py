@@ -15,14 +15,13 @@ class Game (ToResources):
         self.fps : float = 60.0
         self.score : int = 0
         self.all_sprites = pygame.sprite.Group()
-        self.all_sprites.add(self.brid)
-
+        
         self.all_pipes = pygame.sprite.Group()
-        self.add_new_pipes()
+        
         self.list_coor_ui: list = [ 
-                                    (140,400),
-                                    (350,400),
-                                    (140,500)
+                                    (140,400), #reset
+                                    (350,400), #share
+                                    (140,500) #add score
                                 ]
 
         # self.game_map.load_pipes()
@@ -52,10 +51,24 @@ class Game (ToResources):
                     if event.button == pygame.BUTTON_LEFT:
                         self.brid.update(-self.brid.speed*20)
                         self.to_go = True
-            
+            else :
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        mouse_x, mouse_y = event.pos
+                        btn_x, btn_y = self.list_coor_ui[0]            
+                        if btn_x <= mouse_x <= btn_x + self.ui.reset.get_width() and btn_y <= mouse_y <= btn_y + self.ui.reset.get_height():
+                            self.to_reset()
+                            self.all_pipes.empty()
+                            self.all_sprites.empty()
+
 
     def update(self):
+        if len(self.all_sprites) == 0 and len(self.all_pipes) == 0:
+            self.all_sprites.add(self.brid)
+            self.add_new_pipes()
+
         if self.to_go:
+                
             self.brid.update(self.brid.speed)
             
             for pipe in self.all_pipes:

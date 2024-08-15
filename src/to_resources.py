@@ -11,6 +11,23 @@ load_dotenv()
 
 class ToResources:
     def __init__(self):
+        self.display_width :int = self.get_data_env(label="SIZE_WIDTH_SCREEN")
+        self.display_height :int = self.get_data_env(label="SIZE_HEIGHT_SCREEN")
+        self.display_name :str = self.get_data_env(label="APP_NAME")
+
+        self.path_pipe : str = self.get_data_env(label="PIPES")
+        self.path_floor : str = self.get_data_env(label="FLOOR")
+        self.path_floor_two : str = self.get_data_env(label="FLOOR_2")
+        self.path_brid : str = self.get_data_env(label="BIRD_SPRITE_1")
+        self.path_brid_two : str = self.get_data_env(label="BIRD_SPRITE_2")
+
+        self.path_backgroud : str | tuple = self.get_data_env(label="BACKGROUND_SCREEN", default=(0,0,255))
+
+        self.path_btn_reset : str = self.get_data_env("RESET")
+        self.path_btn_lead : str = self.get_data_env("LEAD")
+        self.path_btn_share : str = self.get_data_env("SHARE")
+        self.path_score_background : str = self.get_data_env("SCORE")
+
         self.to_reset()
 
     def get_size_to_display(self)->tuple:
@@ -30,22 +47,6 @@ class ToResources:
         return data 
     
     def to_reset(self):
-        self.display_width :int = self.get_data_env(label="SIZE_WIDTH_SCREEN")
-        self.display_height :int = self.get_data_env(label="SIZE_HEIGHT_SCREEN")
-        self.display_name :str = self.get_data_env(label="APP_NAME")
-
-        self.path_pipe : str = self.get_data_env(label="PIPES")
-        self.path_floor : str = self.get_data_env(label="FLOOR")
-        self.path_floor_two : str = self.get_data_env(label="FLOOR_2")
-        self.path_brid : str = self.get_data_env(label="BIRD_SPRITE_1")
-        self.path_brid_two : str = self.get_data_env(label="BIRD_SPRITE_2")
-
-        self.path_backgroud : str | tuple = self.get_data_env(label="BACKGROUND_SCREEN", default=(0,0,255))
-
-        self.path_btn_reset : str = self.get_data_env("RESET")
-        self.path_btn_lead : str = self.get_data_env("LEAD")
-        self.path_btn_share : str = self.get_data_env("SHARE")
-        self.path_score_background : str = self.get_data_env("SCORE")
 
         self.colors : list = [(0,0,0),(255,255,255)]
 

@@ -18,10 +18,10 @@ class UserInterface:
 
     
     def button_option(self,display : pygame, path_btn_reset: str, path_btn_add_lead : str, path_general : str, list_coor : list):
-        reset = pygame.transform.scale(pygame.image.load(path_btn_reset),(150,64))
+        self.reset = pygame.transform.scale(pygame.image.load(path_btn_reset),(150,64))
         share = pygame.transform.scale(pygame.image.load(path_general),(150,64))
         lead = pygame.transform.scale(pygame.image.load(path_btn_add_lead),(360,64))
 
-        display.blit(reset,list_coor[0])
+        display.blit(self.reset,list_coor[0])
         display.blit(share,list_coor[1])
         display.blit(lead,list_coor[2])
