@@ -26,7 +26,7 @@ class Pipe(pygame.sprite.Sprite):
         pipe_bottom_y = random.randint(200, 600)
         
         # Posición Y del pipe superior (basado en la separación de 100px)
-        pipe_top_y = pipe_bottom_y - pipe_height - 150
+        pipe_top_y = pipe_bottom_y - pipe_height - 200
         
         return [(x_position, pipe_top_y),(x_position, pipe_bottom_y)]
         

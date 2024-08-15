@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 from game_map import GameMap
 from player import Player
 from pipe import Pipe
+from ui import UserInterface
+
 
 load_dotenv()
 
@@ -39,6 +41,12 @@ class ToResources:
         self.path_brid_two : str = self.get_data_env(label="BIRD_SPRITE_2")
 
         self.path_backgroud : str | tuple = self.get_data_env(label="BACKGROUND_SCREEN", default=(0,0,255))
+
+        self.path_btn_reset : str = self.get_data_env("RESET")
+        self.path_btn_lead : str = self.get_data_env("LEAD")
+        self.path_btn_share : str = self.get_data_env("SHARE")
+        self.path_score_background : str = self.get_data_env("SCORE")
+
         self.colors : list = [(0,0,0),(255,255,255)]
 
         self.game_map = GameMap(self.path_backgroud,self.path_floor, self.path_floor_two,5)
@@ -47,7 +55,9 @@ class ToResources:
 
         self.new_pipes()
 
-        self.to_go = False
+        self.to_go : bool = False
+        self.to_pause : bool = False
+        self.ui = UserInterface()
 
     def new_pipes(self):
         self.pipe_bottom = Pipe(self.path_pipe)

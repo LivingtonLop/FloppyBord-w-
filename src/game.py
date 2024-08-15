@@ -19,7 +19,11 @@ class Game (ToResources):
 
         self.all_pipes = pygame.sprite.Group()
         self.add_new_pipes()
-
+        self.list_coor_ui: list = [ 
+                                    (140,400),
+                                    (350,400),
+                                    (140,500)
+                                ]
 
         # self.game_map.load_pipes()
 
@@ -36,15 +40,18 @@ class Game (ToResources):
             if event.type == pygame.QUIT:
                 self.to_execute = False
 
-            if event.type == pygame.KEYDOWN:
-                if event.key in self.events_key:
-                    self.brid.update(-self.brid.speed*20)
-                    self.to_go = True
+            if not self.to_pause:
+                # print(f"En ejecucion{self.to_pause}")
 
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == pygame.BUTTON_LEFT:
-                    self.brid.update(-self.brid.speed*20)
-                    self.to_go = True
+                if event.type == pygame.KEYDOWN:
+                    if event.key in self.events_key:
+                        self.brid.update(-self.brid.speed*20)
+                        self.to_go = True
+
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == pygame.BUTTON_LEFT:
+                        self.brid.update(-self.brid.speed*20)
+                        self.to_go = True
             
 
     def update(self):
@@ -59,12 +66,12 @@ class Game (ToResources):
             if pipe.rect.x == self.brid.rect.x:    
                 self.new_pipes()
                 self.add_new_pipes()
-            
-                    
-            
-        if self.game_map.confirm_collision(self.brid,self.all_pipes, self.display.get_height()):
-            pass
+                self.score+=1
 
+        if self.game_map.confirm_collision(self.brid,self.all_pipes, self.display.get_height()):
+            self.to_go = False
+            self.to_pause = True
+ 
 
     def render(self):
         self.display.fill((self.colors[1]))
@@ -77,6 +84,11 @@ class Game (ToResources):
         self.all_pipes.draw(self.display)
         self.all_sprites.draw(self.display)        
 
+        if self.to_pause:
+            self.ui.show_score(self.display,self.score,self.path_score_background)
+            self.ui.button_option(self.display,self.path_btn_reset,self.path_btn_lead,self.path_btn_share,self.list_coor_ui)
+
+
         pygame.display.update()
     
     @staticmethod
@@ -86,4 +98,4 @@ class Game (ToResources):
     def add_new_pipes(self):
         self.all_pipes.add(self.pipe_bottom)
         self.all_pipes.add(self.pipe_top)
-        print(self.all_pipes)
+        #print(self.all_pipes)
