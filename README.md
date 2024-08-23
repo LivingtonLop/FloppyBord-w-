@@ -1,5 +1,10 @@
 # FloppyBord-w-
-Practica para desarrollar video juego con pygame
+Este es una forma de hacer un instalador y un ejecutable
 
 
-Tamano (Iphone 5 9:16 (640x1136))
+Generar el .exe
+"""
+    pyinstaller --onefile --windowed --distpath output/dist  --name FloppyBord run.py --add-data "assets;assets" --add-data ".env;." --add-data "src;src" 
+"""
+
+Luego usas el script.iss y le das a run, creara un instalador (no indicare nada mas)

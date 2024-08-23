@@ -1,30 +1,16 @@
 import os
+import sys
 from typing import Union
-from dotenv import load_dotenv
 from game_map import GameMap
 from player import Player
 from pipe import Pipe
 from ui import UserInterface
 
-import os
-import sys
 
-# Determinar el path correcto
-if getattr(sys, 'frozen', False):
-    # Si se está ejecutando como un ejecutable creado por PyInstaller
-    bundle_dir = sys._MEIPASS
-else:
-    # Si se está ejecutando directamente desde el script
-    bundle_dir = os.path.abspath(os.path.dirname(__file__))
-
-# Ruta al archivo .env
-dotenv_path = os.path.join(bundle_dir, '.env')
-
-# Cargar el archivo .env
-load_dotenv(dotenv_path)
 
 class ToResources:
     def __init__(self):
+
         self.display_width :int = self.get_data_env(label="SIZE_WIDTH_SCREEN")
         self.display_height :int = self.get_data_env(label="SIZE_HEIGHT_SCREEN")
         self.display_name :str = self.get_data_env(label="APP_NAME")
@@ -49,6 +35,7 @@ class ToResources:
         
     @staticmethod
     def get_data_env(label : str,default: Union[str,int,bool,tuple,None] = None) -> Union[str,int,tuple,bool,None]:
+        path = sys._MEIPASS if getattr(sys, 'frozen', False) else ""
         data = os.getenv(key=label)
 
         if data is None:
@@ -58,7 +45,7 @@ class ToResources:
         if data.isdigit():
             return int(data)
         
-        return data 
+        return os.path.join(path,data) 
     
     def to_reset(self):
 

@@ -58,6 +58,7 @@ class Game (ToResources):
                         btn_x, btn_y = self.list_coor_ui[0]            
                         if btn_x <= mouse_x <= btn_x + self.ui.reset.get_width() and btn_y <= mouse_y <= btn_y + self.ui.reset.get_height():
                             self.to_reset()
+                            self.score = 0
                             self.all_pipes.empty()
                             self.all_sprites.empty()
 
