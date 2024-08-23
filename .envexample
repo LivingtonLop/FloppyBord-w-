@@ -1,0 +1,18 @@
+APP_NAME = "Floppy Bird -w-"
+
+
+BIRD_SPRITE_1 = "assets\images\skin_predeterminada_sprite_1.png"
+BIRD_SPRITE_2 = "assets\images\skin_predeterminada_sprite_2.png"
+
+PIPES = "assets\images\skin_pipe.png"
+FLOOR = "assets\images\skin_grass_sprite_base.png"
+FLOOR_2 = "assets\images\sprite_grass_2.png"
+
+RESET = "assets\ui\reset.png"
+LEAD = "assets\ui\lead.png"
+SHARE = "assets\ui\share.png"
+SCORE = "assets\ui\score.png"
+
+SIZE_WIDTH_SCREEN = 640
+SIZE_HEIGHT_SCREEN = 700
+
