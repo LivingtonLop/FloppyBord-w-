@@ -6,8 +6,22 @@ from player import Player
 from pipe import Pipe
 from ui import UserInterface
 
+import os
+import sys
 
-load_dotenv()
+# Determinar el path correcto
+if getattr(sys, 'frozen', False):
+    # Si se está ejecutando como un ejecutable creado por PyInstaller
+    bundle_dir = sys._MEIPASS
+else:
+    # Si se está ejecutando directamente desde el script
+    bundle_dir = os.path.abspath(os.path.dirname(__file__))
+
+# Ruta al archivo .env
+dotenv_path = os.path.join(bundle_dir, '.env')
+
+# Cargar el archivo .env
+load_dotenv(dotenv_path)
 
 class ToResources:
     def __init__(self):

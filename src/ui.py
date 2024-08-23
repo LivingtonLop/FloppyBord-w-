@@ -16,6 +16,11 @@ class UserInterface:
         display.blit(text_top, (coor[0]+60,coor[1]+110))
         display.blit(text_score, (coor[0]+90,coor[1]+160))
 
+    def show_score_in_game(self,display: pygame,score: int, coor : tuple = (200,50)):
+        font = pygame.font.SysFont('Arial',60,True)
+        text_score = font.render(f"{score}", True,(255,255,255))
+
+        display.blit(text_score, (coor[0]+90,coor[1]+160))
     
     def button_option(self,display : pygame, path_btn_reset: str, path_btn_add_lead : str, path_general : str, list_coor : list):
         self.reset = pygame.transform.scale(pygame.image.load(path_btn_reset),(150,64))

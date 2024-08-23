@@ -95,6 +95,7 @@ class Game (ToResources):
 
         self.game_map.render(self.display)
         self.all_pipes.draw(self.display)
+        self.ui.show_score_in_game(self.display,self.score)
         self.all_sprites.draw(self.display)        
 
         if self.to_pause:
